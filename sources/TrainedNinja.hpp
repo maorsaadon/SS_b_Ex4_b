@@ -10,17 +10,7 @@ namespace ariel
     {
 
     public:
-        TrainedNinja(const string &name, const Point &location);
-        
-        // TrainedNinja(const TrainedNinja &other);
-
-        // TrainedNinja(TrainedNinja &&other) noexcept;
-
-        // TrainedNinja &operator=(const TrainedNinja &other);
-
-        // TrainedNinja &operator=(TrainedNinja &&other) noexcept;
-
-        // ~TrainedNinja() = default;
+        TrainedNinja(const string &_name, const Point &_location) : Ninja(_name, _location, 120, 12){}
     };
 }
 

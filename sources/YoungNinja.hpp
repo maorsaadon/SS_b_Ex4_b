@@ -8,19 +8,8 @@ namespace ariel
 
     class YoungNinja : public Ninja
     {
-
     public:
-        YoungNinja(const string &name, const Point &location);
-
-        // YoungNinja(const YoungNinja &other);
-
-        // YoungNinja(YoungNinja &&other) noexcept;
-
-        // YoungNinja &operator=(const YoungNinja &other);
-
-        // YoungNinja &operator=(YoungNinja &&other) noexcept;
-
-        // ~YoungNinja() = default;
+        YoungNinja(const string &_name, const Point &_location) : Ninja(_name, _location, 100, 14) {}
     };
 }
 

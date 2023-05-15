@@ -44,14 +44,16 @@ namespace ariel
 
     string Cowboy::print() const
     {
+        int _x = getLocation().getPointX();
+        int _y = getLocation().getPointY();
         string output = "\tC(" + getName() + ")\n\n";
         if (isAlive())
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: (" + to_string(_x) + "," + to_string(_y) + ")" + "\n\n";
         }
         else
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: --\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: -- " + "Location: (" + to_string(_x) + "," + to_string(_y) + ")" + "\n\n";
         }
 
         cout << output; // Print to the console
@@ -61,6 +63,8 @@ namespace ariel
 
     void Cowboy::_attack(Character *enemy)
     {
+        if(!enemy->isAlive() || !isAlive())
+            return;
         if (!hasboolets())
             reload();
         else

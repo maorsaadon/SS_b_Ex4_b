@@ -27,7 +27,7 @@ namespace ariel
         if(this == enemy)
             throw runtime_error("Cant kill himself\n");
         if (!isAlive())
-            throw runtime_error("Im dead canwt kill enyone\n");
+            throw runtime_error("Im dead can't kill enyone\n");
         if (!enemy->isAlive())
             throw runtime_error("This enemy is allready dead\n");
         else
@@ -62,6 +62,8 @@ namespace ariel
 
     void Ninja::_attack(Character *enemy)
     {
+        if(!enemy->isAlive() || !isAlive())
+            return;
         if (getLocation().distance(enemy->getLocation()) > 100)
             move(enemy);
         else

@@ -1,7 +1,6 @@
 #ifndef TEAM_HPP
 #define TEAM_HPP
 
-
 #include <cmath>
 #include <stdexcept>
 #include <numeric>
@@ -34,16 +33,16 @@ namespace ariel
         vector<Character *> _team;
 
         Character *_teamLeader;
-        
+
         void chooseNewLeader();
-        
+
         Character *findClosestLivingMember(const vector<Character *> &characters, const Point &targetLocation);
 
     public:
         Team(Character *leader);
 
         // destructor
-        ~Team();
+        virtual ~Team();
 
         Team(const Team &other);
 
@@ -57,13 +56,11 @@ namespace ariel
 
         Character *getLeader() const;
 
-        vector<Character*> getTeam() const;
-
         virtual void add(Character *player);
 
         void attack(Team *other);
 
-        int stillAlive() const;
+        virtual int stillAlive() const;
 
         void print() const;
     };
