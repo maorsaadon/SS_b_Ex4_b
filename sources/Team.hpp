@@ -29,7 +29,7 @@ namespace ariel
     class Team
     {
 
-    private:
+    protected:
         vector<Character *> _team;
 
         Character *_teamLeader;
@@ -39,8 +39,10 @@ namespace ariel
         Character *findClosestLivingMember(const vector<Character *> &characters, const Point &targetLocation);
 
     public:
-        Team(Character *leader);
+        Team(Character *_teamleader);
 
+        Team(Character *_teamLeader, const vector<Character*>& _team);
+        
         // destructor
         virtual ~Team();
 
@@ -60,7 +62,7 @@ namespace ariel
 
         void attack(Team *other);
 
-        virtual int stillAlive() const;
+        int stillAlive() const;
 
         void print() const;
     };

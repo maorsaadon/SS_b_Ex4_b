@@ -10,13 +10,11 @@ namespace ariel
     Ninja::Ninja(const string &_name, const Point &_location, int _health, int _speed) : Character(_name, _location, _health), _speed(_speed) {}
 
     void Ninja::move(Character *enemy)
-    {
+    {   
         if (!isAlive())
-        {
-            cout << "This character is dead\n"
-                 << endl;
-            return;
-        }
+            throw runtime_error("Im dead can't move\n");
+        if (!enemy->isAlive())
+            throw runtime_error("This enemy is allready dead\n");
         else
             setLocation(Point::moveTowards(getLocation(), enemy->getLocation(), _speed));
     }
@@ -64,7 +62,7 @@ namespace ariel
     {
         if(!enemy->isAlive() || !isAlive())
             return;
-        if (getLocation().distance(enemy->getLocation()) > 100)
+        if (getLocation().distance(enemy->getLocation()) > 1)
             move(enemy);
         else
             slash(enemy);
