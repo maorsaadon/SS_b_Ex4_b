@@ -11,7 +11,9 @@ namespace ariel
 
     void Cowboy::shoot(Character *enemy)
     {
-        if(this == enemy)
+        if(enemy == nullptr)
+            throw invalid_argument("Nullptr\n");
+        if (this == enemy)
             throw runtime_error("Cant kill himself\n");
         if (!isAlive())
             throw runtime_error("cant shoot\n");
@@ -44,16 +46,14 @@ namespace ariel
 
     string Cowboy::print() const
     {
-        int _x = getLocation().getPointX();
-        int _y = getLocation().getPointY();
         string output = "\tC(" + getName() + ")\n\n";
         if (isAlive())
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: (" + to_string(_x) + "," + to_string(_y) + ")" + "\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: " + getLocation().print() + "\n\n";
         }
         else
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: -- " + "Location: (" + to_string(_x) + "," + to_string(_y) + ")" + "\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: -- " + "Location: " + getLocation().print() + "\n\n";
         }
 
         cout << output; // Print to the console
@@ -61,10 +61,10 @@ namespace ariel
         return output;
     }
 
-    void Cowboy::_attack(Character *enemy)
+    void Cowboy::attack(Character *enemy)
     {
-        if(!enemy->isAlive() || !isAlive())
-            return;
+        if (enemy == nullptr || !enemy->isAlive() || !isAlive())
+            throw invalid_argument("attack failed");
         if (!hasboolets())
             reload();
         else

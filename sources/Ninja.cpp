@@ -10,7 +10,7 @@ namespace ariel
     Ninja::Ninja(const string &_name, const Point &_location, int _health, int _speed) : Character(_name, _location, _health), _speed(_speed) {}
 
     void Ninja::move(Character *enemy)
-    {   
+    {
         if (!isAlive())
             throw runtime_error("Im dead can't move\n");
         if (!enemy->isAlive())
@@ -21,8 +21,9 @@ namespace ariel
 
     void Ninja::slash(Character *enemy)
     {
-       
-        if(this == enemy)
+        if (enemy == nullptr)
+            throw invalid_argument("Nullptr\n");
+        if (this == enemy)
             throw runtime_error("Cant kill himself\n");
         if (!isAlive())
             throw runtime_error("Im dead can't kill enyone\n");
@@ -46,11 +47,11 @@ namespace ariel
         string output = "\tN(" + getName() + ")\n\n";
         if (isAlive())
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: " + getLocation().print() + "\n\n";
         }
         else
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: --\n\n";
+            output += "\t\tHit points: " + to_string(getHit()) + " Points left: --" + "Location: " + getLocation().print() + "\n\n";
         }
 
         cout << output; // Print to the console
@@ -58,10 +59,10 @@ namespace ariel
         return output;
     }
 
-    void Ninja::_attack(Character *enemy)
+    void Ninja::attack(Character *enemy)
     {
-        if(!enemy->isAlive() || !isAlive())
-            return;
+        if (enemy == nullptr || !enemy->isAlive() || !isAlive())
+            throw invalid_argument("attack failed");
         if (getLocation().distance(enemy->getLocation()) > 1)
             move(enemy);
         else

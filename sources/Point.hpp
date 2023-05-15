@@ -23,9 +23,9 @@ namespace ariel
 
         Point(double point_x, double point_y);
 
-        double getPointX() const;
+        double getX() const;
 
-        double getPointY() const;
+        double getY() const;
 
         bool operator==(const Point &other) const;
 
@@ -33,7 +33,7 @@ namespace ariel
 
         double distance(const Point &point) const;
 
-        void print() const;
+        string print() const;
 
         static Point moveTowards(Point source, Point destanation, double distance);
     };

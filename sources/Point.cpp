@@ -12,19 +12,19 @@ namespace ariel
     Point::Point(double _x, double _y) : _x(_x), _y(_y) {}
 
     bool Point::operator==(const Point &other) const{
-        return (_x == other.getPointX() && _y == other.getPointY());
+        return (_x == other.getX() && _y == other.getY());
     }
 
     bool Point::operator!=(const Point &other) const{
-        return !(_x == other.getPointX() && _y == other.getPointY());
+        return !(_x == other.getX() && _y == other.getY());
     }
     
-    double Point::getPointX() const
+    double Point::getX() const
     {
         return _x;
     }
 
-    double Point::getPointY() const
+    double Point::getY() const
     {
         return _y;
     }
@@ -34,9 +34,13 @@ namespace ariel
         return sqrt(pow(point._x - _x, 2) + pow(point._y - _y, 2));
     }
 
-    void Point::print() const
+    string Point::print() const
     {
-        cout << "(" << _x << "," << _y << ")" << endl;
+        string output = "(" + to_string(_x) + "," + to_string(_y) + ")" ;
+
+        cout << output; // Print to the console
+
+        return output;
     }
 
     Point Point::moveTowards(Point source, Point destination, double distance)
@@ -50,7 +54,7 @@ namespace ariel
         else
         {
             double ratio_dist = distance / source.distance(destination);
-            return Point((1 - ratio_dist) * source.getPointX() + (ratio_dist)*destination.getPointX(), (1 - ratio_dist) * source.getPointY() + (ratio_dist)*destination.getPointY());
+            return Point((1 - ratio_dist) * source.getX() + (ratio_dist)*destination.getX(), (1 - ratio_dist) * source.getY() + (ratio_dist)*destination.getY());
         }
     }
 

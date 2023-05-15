@@ -47,11 +47,14 @@ namespace ariel
         _team.clear();
     }
 
+    vector<Character *> &Team::getTeam()
+    {
+        return _team;
+    }
+
     void Team::add(Character *player)
     {
-        if (player == nullptr || !player->isAlive() || player->getInTeam() || _team.size() >= 10)
-            throw runtime_error("Can't add this player");
-        else
+        if (player != nullptr && player->isAlive() && !player->getInTeam() && _team.size() < MaxSizeOfTeam)
         {
             if (dynamic_cast<Cowboy *>(player) != nullptr)
                 _team.insert(_team.begin(), player);
@@ -60,8 +63,12 @@ namespace ariel
 
             player->setInTeam(true);
         }
-    }
 
+        else
+        {
+            throw runtime_error("Can't add this player");
+        }
+    }
     void Team::attack(Team *enemy)
     {
         if (enemy == nullptr)
@@ -74,16 +81,17 @@ namespace ariel
             chooseNewLeader();
 
         Character *victim = nullptr;
-        
-        if(enemy->stillAlive() > 0)
+
+        if (enemy->stillAlive() > 0)
             victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
-        else return;
+        else
+            return;
 
         for (auto fighter : _team)
         {
-            
+
             if (victim != nullptr && fighter != nullptr && fighter->isAlive() && victim->isAlive())
-                fighter->_attack(victim);
+                fighter->attack(victim);
             else
                 victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
         }
@@ -93,12 +101,14 @@ namespace ariel
     {
         int counter = 0;
 
-        for (auto fighter : this->_team){
-            if (fighter->isAlive()){
+        for (auto fighter : this->_team)
+        {
+            if (fighter->isAlive())
+            {
                 counter++;
             }
         }
-        
+
         return counter;
     }
 
@@ -141,10 +151,10 @@ namespace ariel
     {
         Character *closestCharacter = nullptr;
         double minDistance = numeric_limits<double>::max();
-        
+
         for (auto character : players)
         {
-            if (character->isAlive() && character!= nullptr)
+            if (character->isAlive() && character != nullptr)
             {
                 double distance = targetLocation.distance(character->getLocation());
                 if (distance < minDistance)

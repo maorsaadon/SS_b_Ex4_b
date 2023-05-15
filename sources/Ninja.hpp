@@ -15,17 +15,7 @@ namespace ariel
     public:
         Ninja(const string &_name, const Point &_location, int _health, int _speed);
 
-        // Ninja(const string &_name, const Point &_location);
-
-        // Ninja(const Ninja &other);
-
-        // Ninja(Ninja &&other) noexcept;
-
-        // Ninja &operator=(const Ninja &other);
-
-        // Ninja &operator=(Ninja &&other) noexcept;
-
-        virtual ~Ninja(){}
+        // virtual ~Ninja(){}
 
         void move(Character *enemy);
 
@@ -33,7 +23,7 @@ namespace ariel
 
         string print() const override;
 
-        void _attack(Character *enemy) override;
+        void attack(Character *enemy) override;
 
         int getSpeed() const;
     };

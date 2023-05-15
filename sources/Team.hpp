@@ -19,7 +19,7 @@
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
 
-#include <vector>
+const int MaxSizeOfTeam = 10;
 
 using namespace ariel;
 
@@ -29,7 +29,7 @@ namespace ariel
     class Team
     {
 
-    protected:
+    private:
         vector<Character *> _team;
 
         Character *_teamLeader;
@@ -57,6 +57,8 @@ namespace ariel
         Team &operator=(Team &&other) noexcept;
 
         Character *getLeader() const;
+
+        vector<Character*>& getTeam();
 
         virtual void add(Character *player);
 
