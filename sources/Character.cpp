@@ -66,7 +66,7 @@ namespace ariel
         return _name;
     }
 
-    const Point &Character::getLocation() const
+    const Point Character::getLocation() const
     {
         return _location;
     }

@@ -44,7 +44,7 @@ namespace ariel
 
         const string &getName() const;
 
-        const Point &getLocation() const;
+        const Point getLocation() const;
 
         void setLocation(const Point &location);
 

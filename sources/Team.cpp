@@ -82,6 +82,8 @@ namespace ariel
 
         Character *victim = nullptr;
 
+        cout << "stil alive" << enemy->stillAlive() << endl;
+
         if (enemy->stillAlive() > 0)
             victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
         else
@@ -89,11 +91,23 @@ namespace ariel
 
         for (auto fighter : _team)
         {
-
-            if (victim != nullptr && fighter != nullptr && fighter->isAlive() && victim->isAlive())
-                fighter->attack(victim);
-            else
-                victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
+            if (fighter != nullptr && fighter->isAlive())
+            {
+                if (victim != nullptr && victim->isAlive())
+                {
+                    fighter->attack(victim);
+                    victim->print();
+                }
+                else
+                {
+                    victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
+                    if (victim != nullptr && victim->isAlive())
+                    {
+                        fighter->attack(victim);
+                        victim->print();
+                    }
+                }
+            }
         }
     }
 
@@ -162,8 +176,6 @@ namespace ariel
                     minDistance = distance;
                     closestCharacter = character;
                 }
-                else
-                    break;
             }
         }
 
