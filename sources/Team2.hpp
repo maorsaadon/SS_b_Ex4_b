@@ -9,12 +9,12 @@ namespace ariel
     {
     public:
         Team2(Character *_teamLeader) : Team(_teamLeader){}
-         void add(Character *player) override
+        void add(Character *player) override
         {
 
             if (player != nullptr && player->isAlive() && !player->getInTeam() && getTeam().size() < MaxSizeOfTeam)
             {
-                getTeam().insert(getTeam().begin(), player);
+                getTeam().push_back(player) ;
                 player->setInTeam(true);
             }
             else

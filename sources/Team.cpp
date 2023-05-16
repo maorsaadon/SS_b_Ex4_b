@@ -135,7 +135,7 @@ namespace ariel
             if (fighter->isAlive() && fighter != _teamLeader)
             {
                 double distance = _teamLeader->getLocation().distance(fighter->getLocation());
-                if (distance < minDistance)
+                if (distance <= minDistance)
                 {
                     minDistance = distance;
                     newLeader = fighter;
@@ -157,7 +157,7 @@ namespace ariel
             if (character->isAlive() && character != nullptr)
             {
                 double distance = targetLocation.distance(character->getLocation());
-                if (distance < minDistance)
+                if (distance <= minDistance)
                 {
                     minDistance = distance;
                     closestCharacter = character;

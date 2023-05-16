@@ -44,14 +44,14 @@ namespace ariel
 
     string Ninja::print() const
     {
-        string output = "\tN(" + getName() + ")\n\n";
+        string output = "N(" + getName() + ")\n\n";
         if (isAlive())
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: " + getLocation().print() + "\n\n";
+            output += "\tis alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + " Location: " + getLocation().print() + "\n\n";
         }
         else
         {
-            output += "\t\tHit points: " + to_string(getHit()) + " Points left: --" + "Location: " + getLocation().print() + "\n\n";
+            output += "\tis alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: --" + " Location: " + getLocation().print() + "\n\n";
         }
 
         cout << output; // Print to the console

@@ -16,7 +16,7 @@ namespace ariel
     }
 
     bool Point::operator!=(const Point &other) const{
-        return !(_x == other.getX() && _y == other.getY());
+        return !(*this == other);
     }
     
     double Point::getX() const
@@ -37,8 +37,6 @@ namespace ariel
     string Point::print() const
     {
         string output = "(" + to_string(_x) + "," + to_string(_y) + ")" ;
-
-        cout << output; // Print to the console
 
         return output;
     }
