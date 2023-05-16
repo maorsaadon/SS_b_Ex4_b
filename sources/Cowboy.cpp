@@ -11,7 +11,7 @@ namespace ariel
 
     void Cowboy::shoot(Character *enemy)
     {
-        if(enemy == nullptr)
+        if (enemy == nullptr)
             throw invalid_argument("Nullptr\n");
         if (this == enemy)
             throw runtime_error("Cant kill himself\n");
@@ -46,17 +46,13 @@ namespace ariel
 
     string Cowboy::print() const
     {
-        string output = "C(" + getName() + ")\n\n";
+        string output = "\tC " + getName();
         if (isAlive())
-        {
-            output += "\t is alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + "Location: " + getLocation().print() + "\n\n";
-        }
+            output += " " + to_string(getHealth()) + " " + getLocation().print() + "\n";
         else
-        {
-            output += "\tis alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: -- " + "Location: " + getLocation().print() + "\n\n";
-        }
+            output += " -- " + getLocation().print() + "\n";
 
-        cout << output; // Print to the console
+        cout << output;
 
         return output;
     }

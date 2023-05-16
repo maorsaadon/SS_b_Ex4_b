@@ -11,6 +11,8 @@ namespace ariel
 
     void Ninja::move(Character *enemy)
     {
+        if (enemy == nullptr)
+            throw invalid_argument("Nullptr\n");
         if (!isAlive())
             throw runtime_error("Im dead can't move\n");
         if (!enemy->isAlive())
@@ -44,17 +46,13 @@ namespace ariel
 
     string Ninja::print() const
     {
-        string output = "N(" + getName() + ")\n\n";
+        string output = "\tN " + getName();
         if (isAlive())
-        {
-            output += "\tis alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: " + to_string(getHealth()) + " Location: " + getLocation().print() + "\n\n";
-        }
+            output += " " + to_string(getHealth()) + " " + getLocation().print() + "\n";
         else
-        {
-            output += "\tis alive: " + to_string(isAlive()) + " Hit points: " + to_string(getHit()) + " Points left: --" + " Location: " + getLocation().print() + "\n\n";
-        }
+            output += " -- " + getLocation().print() + "\n";
 
-        cout << output; // Print to the console
+        cout << output;
 
         return output;
     }

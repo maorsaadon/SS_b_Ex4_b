@@ -82,8 +82,6 @@ namespace ariel
 
         Character *victim = nullptr;
 
-        cout << "stil alive" << enemy->stillAlive() << endl;
-
         if (enemy->stillAlive() > 0)
             victim = findClosestLivingMember(enemy->_team, _teamLeader->getLocation());
         else
@@ -128,7 +126,7 @@ namespace ariel
 
     void Team::print() const
     {
-        cout << "The member team : \n"
+        cout << "The member team : "
              << endl;
         for (auto fighter : _team)
             fighter->print();
