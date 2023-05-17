@@ -61,7 +61,7 @@ namespace ariel
     {
         if (enemy == nullptr || !enemy->isAlive() || !isAlive())
             throw invalid_argument("attack failed");
-        if (getLocation().distance(enemy->getLocation()) <= 1)
+        if (distance(enemy) <= 1)
             slash(enemy);
         else
             move(enemy);
