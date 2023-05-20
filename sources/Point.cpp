@@ -41,6 +41,7 @@ namespace ariel
         return output;
     }
 
+    //https://math.stackexchange.com/questions/175896/finding-a-point-along-a-line-a-certain-distance-away-from-another-point
     Point Point::moveTowards(Point source, Point destination, double distance)
     {
         if (distance < 0)
