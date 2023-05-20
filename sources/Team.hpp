@@ -34,15 +34,11 @@ namespace ariel
 
         Character *_teamLeader;
 
-        void chooseNewLeader();
-
-        Character *findClosestLivingMember(const vector<Character *> &characters, const Point &targetLocation);
-
     public:
         Team(Character *_teamleader);
 
-        Team(Character *_teamLeader, const vector<Character*>& _team);
-        
+        Team(Character *_teamLeader, const vector<Character *> &_team);
+
         // destructor
         virtual ~Team();
 
@@ -58,15 +54,19 @@ namespace ariel
 
         Character *getLeader() const;
 
-        vector<Character*>& getTeam();
+        vector<Character *> &getTeam();
 
         virtual void add(Character *player);
 
-        void attack(Team *other);
+        virtual void attack(Team *other);
 
         int stillAlive() const;
 
         void print() const;
+
+        void chooseNewLeader();
+
+        Character *findClosestLivingMember(const vector<Character *> &characters, const Point &targetLocation);
     };
 }
 
