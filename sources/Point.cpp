@@ -11,14 +11,16 @@ namespace ariel
 
     Point::Point(double _x, double _y) : _x(_x), _y(_y) {}
 
-    bool Point::operator==(const Point &other) const{
+    bool Point::operator==(const Point &other) const
+    {
         return (_x == other.getX() && _y == other.getY());
     }
 
-    bool Point::operator!=(const Point &other) const{
+    bool Point::operator!=(const Point &other) const
+    {
         return !(*this == other);
     }
-    
+
     double Point::getX() const
     {
         return _x;
@@ -29,6 +31,7 @@ namespace ariel
         return _y;
     }
 
+    //https://www.geeksforgeeks.org/program-calculate-distance-two-points/
     double Point::distance(const Point &point) const
     {
         return sqrt(pow(point._x - _x, 2) + pow(point._y - _y, 2));
@@ -36,12 +39,12 @@ namespace ariel
 
     string Point::print() const
     {
-        string output = "(" + to_string(_x) + "," + to_string(_y) + ")" ;
+        string output = "(" + to_string(_x) + "," + to_string(_y) + ")";
 
         return output;
     }
 
-    //https://math.stackexchange.com/questions/175896/finding-a-point-along-a-line-a-certain-distance-away-from-another-point
+    // https://math.stackexchange.com/questions/175896/finding-a-point-along-a-line-a-certain-distance-away-from-another-point
     Point Point::moveTowards(Point source, Point destination, double distance)
     {
         if (distance < 0)
